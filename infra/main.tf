@@ -7,6 +7,60 @@ provider "aws" {
   region = "us-east-1"
 }
 
+data "aws_cloudfront_origin_request_policy" "cors_s3_origin" {
+  name = "Managed-CORS-S3Origin"
+}
+
+resource "aws_cloudfront_cache_policy" "html" {
+  name        = "portfolio-html"
+  comment     = "Short cache for HTML"
+  default_ttl = 300
+  max_ttl     = 3600
+  min_ttl     = 60
+
+  parameters_in_cache_key_and_forwarded_to_origin {
+    cookies_config {
+      cookie_behavior = "none"
+    }
+
+    headers_config {
+      header_behavior = "none"
+    }
+
+    query_strings_config {
+      query_string_behavior = "none"
+    }
+
+    enable_accept_encoding_gzip   = true
+    enable_accept_encoding_brotli = true
+  }
+}
+
+resource "aws_cloudfront_cache_policy" "assets" {
+  name        = "portfolio-assets"
+  comment     = "Long cache for versioned static assets"
+  default_ttl = 31536000
+  max_ttl     = 31536000
+  min_ttl     = 86400
+
+  parameters_in_cache_key_and_forwarded_to_origin {
+    cookies_config {
+      cookie_behavior = "none"
+    }
+
+    headers_config {
+      header_behavior = "none"
+    }
+
+    query_strings_config {
+      query_string_behavior = "none"
+    }
+
+    enable_accept_encoding_gzip   = true
+    enable_accept_encoding_brotli = true
+  }
+}
+
 locals {
   site_bucket_name     = var.site_bucket_name != "" ? var.site_bucket_name : var.domain_name
   origin_id            = "portfolio-s3-origin"
@@ -147,17 +201,23 @@ resource "aws_cloudfront_distribution" "site" {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.origin_id
+    cache_policy_id  = aws_cloudfront_cache_policy.html.id
+    origin_request_policy_id = data.aws_cloudfront_origin_request_policy.cors_s3_origin.id
 
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
+  }
 
-    forwarded_values {
-      query_string = false
+  ordered_cache_behavior {
+    path_pattern     = "/assets/*"
+    allowed_methods  = ["GET", "HEAD"]
+    cached_methods   = ["GET", "HEAD"]
+    target_origin_id = local.origin_id
+    cache_policy_id  = aws_cloudfront_cache_policy.assets.id
+    origin_request_policy_id = data.aws_cloudfront_origin_request_policy.cors_s3_origin.id
 
-      cookies {
-        forward = "none"
-      }
-    }
+    viewer_protocol_policy = "redirect-to-https"
+    compress               = true
   }
 
   restrictions {
