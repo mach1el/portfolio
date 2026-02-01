@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c084fc;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#0f1115"/>
+
+  <!-- Person Icon -->
+  <!-- Head -->
+  <circle cx="32" cy="22" r="8" fill="url(#grad)"/>
+
+  <!-- Body -->
+  <path d="M 20 48 Q 20 36 32 36 Q 44 36 44 48 L 44 52 Q 44 54 42 54 L 22 54 Q 20 54 20 52 Z" fill="url(#grad)"/>
+
+  <!-- Glow effect -->
+  <circle cx="32" cy="22" r="8" fill="none" stroke="#a855f7" stroke-width="0.5" opacity="0.3"/>
+</svg>

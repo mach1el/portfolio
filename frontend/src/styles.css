@@ -60,11 +60,195 @@ body {
   pointer-events: none;
 }
 
-.hero {
+/* Centered Hero Section */
+.hero-centered {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 0 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 600;
+  margin-bottom: 24px;
+  background: linear-gradient(
+    120deg,
+    var(--text) 0%,
+    var(--text) 40%,
+    var(--accent-2) 60%,
+    var(--accent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite;
+}
+
+.hero-tagline {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-tagline strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Social Buttons */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  min-height: 48px;
+}
+
+.social-btn:hover {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: var(--accent);
+  color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.2);
+}
+
+/* Expertise Section */
+.expertise-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.expertise-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 48px;
+  gap: 32px;
+}
+
+.expertise-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--stroke);
+  border-radius: 24px;
+  padding: 48px 32px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+}
+
+.expertise-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  border-color: var(--accent);
+}
+
+.expertise-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  border-radius: 20px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.expertise-icon-blue {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.05));
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+}
+
+.expertise-icon-red {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.05));
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.expertise-icon-purple {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(147, 51, 234, 0.05));
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  color: var(--accent-2);
+}
+
+.expertise-card:hover .expertise-icon-blue {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(37, 99, 235, 0.1));
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+}
+
+.expertise-card:hover .expertise-icon-red {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(220, 38, 38, 0.1));
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+}
+
+.expertise-card:hover .expertise-icon-purple {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(147, 51, 234, 0.1));
+  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.3);
+}
+
+.expertise-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.expertise-voip .expertise-title {
+  color: #60a5fa;
+}
+
+.expertise-security .expertise-title {
+  color: #f87171;
+}
+
+.expertise-infra .expertise-title {
+  color: var(--accent-2);
+}
+
+.expertise-label {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.hero {
   position: relative;
   z-index: 1;
 }
@@ -303,9 +487,6 @@ button:active {
 }
 
 .metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
   z-index: 1;
 }
 
@@ -347,10 +528,6 @@ button:active {
 }
 
 .split {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
-  align-items: center;
   z-index: 1;
 }
 
@@ -417,9 +594,7 @@ button:active {
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  width: 100%;
 }
 
 .project-card {
@@ -597,10 +772,6 @@ button:active {
 }
 
 .contact {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
   padding: 28px;
   border-radius: 24px;
   border: 1px solid var(--stroke);
@@ -618,15 +789,33 @@ button:active {
   max-width: 520px;
 }
 
+.contact-cta {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .contact-cta {
+    width: auto;
+  }
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 24px;
   color: var(--muted);
   font-size: 14px;
   z-index: 1;
+  padding-top: 40px;
+  border-top: 1px solid var(--stroke);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .footer-links {
@@ -648,35 +837,461 @@ button:active {
   color: var(--accent-2);
 }
 
-@media (max-width: 800px) {
-  .contact {
-    flex-direction: column;
-    align-items: flex-start;
+/* Floating Donation Widget */
+.floating-donation-widget {
+  position: fixed;
+  bottom: 200px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.donation-mascot {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4),
+              0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+.donation-mascot:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.5),
+              0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.mascot-heart {
+  color: white;
+  animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.donation-tooltip {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.floating-donation-widget.is-open .donation-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.donation-tooltip-text {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(168, 85, 247, 0.95);
+  color: white;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+}
+
+.donation-popup {
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  max-width: 240px;
+}
+
+.floating-donation-widget.is-open .donation-popup {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.donation-popup-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.95), rgba(192, 132, 252, 0.9));
+  border-radius: 16px 16px 0 0;
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: white;
+  font-weight: 500;
+}
+
+.donation-popup-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(27, 33, 45, 0.98);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  backdrop-filter: blur(12px);
+}
+
+.donation-popup-btn-wrapper {
+  position: relative;
+}
+
+.donation-popup-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.donation-popup-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  transform: translateX(-4px);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.3);
+}
+
+/* QR Code Preview */
+.qr-code-preview {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-12px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+}
+
+.donation-popup-btn-wrapper:hover .qr-code-preview,
+.qr-code-preview.qr-visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-12px) scale(1);
+  pointer-events: all;
+}
+
+.qr-code-image {
+  width: 280px;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+              0 8px 24px rgba(168, 85, 247, 0.3);
+  border: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+/* Donation Section */
+.donation-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(192, 132, 252, 0.05));
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+}
+
+.donation-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--accent-2);
+}
+
+.heart-icon {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.1);
+  }
+  20%, 40% {
+    transform: scale(1);
+  }
+}
+
+.donation-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.donation-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--stroke);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  min-height: 36px;
+}
+
+.donation-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding: 60px 32px 80px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    line-height: 1.3;
+  }
+
+  .lede {
+    font-size: 17px;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .hero-actions button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  /* Profile card tablet */
+  .profile-card {
+    padding: 24px;
+  }
+
+  .profile-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .avatar {
+    width: 160px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .profile-info {
+    gap: 16px;
+    align-items: center;
+  }
+
+  .profile-body {
+    text-align: left;
+    max-width: 400px;
+  }
+
+  .profile-footer {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .profile-header h2 {
+    font-size: 22px;
+  }
+
+  .metric-card {
+    padding: 24px 20px;
+  }
+
+  .metric-card h3 {
+    font-size: 36px;
+  }
+
+  /* Sections tablet */
+  .section {
+    padding: 48px 0;
   }
 
   .section-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
   }
 
-  /* Adjust profile card for tablet */
-  .avatar {
-    width: 140px;
-    height: 180px;
+  .section-header h2 {
+    font-size: 28px;
   }
 
-  .profile-header {
-    gap: 16px;
+  .project-card {
+    padding: 28px;
   }
 
-  .profile-info {
-    gap: 16px;
+  .skill-category-title {
+    font-size: 16px;
+  }
+
+  /* Timeline tablet */
+  .timeline-item {
+    padding: 24px;
+  }
+
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .timeline-header h3 {
+    font-size: 20px;
+  }
+
+  .contact h2 {
+    font-size: 26px;
+  }
+
+  /* Footer tablet */
+  .footer {
+    padding-top: 32px;
+  }
+
+  /* Floating donation widget tablet */
+  .floating-donation-widget {
+    bottom: 140px;
+    right: 20px;
+  }
+
+  .donation-mascot {
+    width: 58px;
+    height: 58px;
+  }
+
+  .mascot-heart {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Expertise grid tablet (legacy styles) */
+  .expertise-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-centered {
+    padding: 60px 0 40px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+
+  .hero-subtitle {
+    font-size: 32px;
   }
 }
 
 @media (max-width: 640px) {
   .page {
     padding: 40px 20px 64px;
+  }
+
+  /* Centered hero mobile */
+  .hero-centered {
+    padding: 40px 0 30px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-subtitle {
+    font-size: 24px;
+  }
+
+  .hero-tagline {
+    font-size: 16px;
+  }
+
+  /* Social buttons mobile */
+  .social-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .social-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  /* Expertise cards mobile */
+  .expertise-section {
+    padding: 20px 0;
+  }
+
+  .expertise-grid {
+    gap: 20px;
+  }
+
+  .expertise-card {
+    padding: 32px 24px;
+  }
+
+  .expertise-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .expertise-title {
+    font-size: 24px;
   }
 
   .hero-actions {
@@ -718,33 +1333,12 @@ button:active {
     justify-content: center;
   }
 
-  /* Hero section mobile adjustments */
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
   .hero h1 {
     font-size: 28px;
   }
 
   .lede {
     font-size: 16px;
-  }
-
-  /* Metrics mobile adjustments */
-  .metrics {
-    grid-template-columns: 1fr;
-  }
-
-  /* Skills grid mobile */
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Project grid mobile */
-  .grid {
-    grid-template-columns: 1fr;
   }
 
   /* Section headers mobile */
@@ -791,12 +1385,82 @@ button:active {
   .footer {
     flex-direction: column;
     text-align: center;
-    gap: 12px;
+    gap: 20px;
+  }
+
+  .footer-content {
+    align-items: center;
+    text-align: center;
   }
 
   .footer-links {
     flex-direction: column;
     gap: 12px;
+  }
+
+  /* Donation section mobile */
+  .donation-section {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .donation-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .donation-btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+  }
+
+  /* Floating donation widget mobile */
+  .floating-donation-widget {
+    bottom: 72px;
+    right: 16px;
+  }
+
+  .donation-mascot {
+    width: 68px;
+    height: 68px;
+  }
+
+  .mascot-heart {
+    width: 34px;
+    height: 34px;
+  }
+
+  .donation-tooltip {
+    display: none;
+  }
+
+  .donation-popup {
+    max-width: 200px;
+  }
+
+  .donation-popup-btn {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  /* QR code preview mobile */
+  .qr-code-preview {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 100%;
+    transform: translateX(-50%) translateY(-12px) scale(0.95);
+  }
+
+  .donation-popup-btn-wrapper:hover .qr-code-preview,
+  .qr-code-preview.qr-visible {
+    transform: translateX(-50%) translateY(-12px) scale(1);
+  }
+
+  .qr-code-image {
+    width: 220px;
   }
 }
 
@@ -1014,9 +1678,7 @@ section.section-in-view {
    ============================================ */
 
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  width: 100%;
 }
 
 .skill-category {

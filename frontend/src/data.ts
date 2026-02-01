@@ -5,6 +5,22 @@
  * All information is centralized here for easy maintenance.
  */
 
+// Career start date for calculating years of experience
+const CAREER_START_YEAR = 2018;
+const CAREER_START_MONTH = 12; // December
+
+// Calculate years of experience dynamically
+const calculateYearsOfExperience = (): string => {
+  const now = new Date();
+  const startDate = new Date(CAREER_START_YEAR, CAREER_START_MONTH - 1);
+  const diffInMs = now.getTime() - startDate.getTime();
+  const years = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 365.25));
+  return `${years}+`;
+};
+
+// Export current year for use in footer and other places
+export const currentYear = new Date().getFullYear();
+
 export const personalInfo = {
   name: "Đặng Bảo Phong",
   role: "DevOps Engineer",
@@ -41,7 +57,7 @@ export const socialLinks = [
 export const highlights = [
   {
     label: "Years Experience",
-    value: "6+",
+    value: calculateYearsOfExperience(),
     detail: "DevOps & Infrastructure",
   },
   {
@@ -191,19 +207,19 @@ export const experience = [
 export const projects = [
   {
     title: "CallCraft",
-    period: "Jan 2025 - Present",
+    period: "Jan 2026 - Present",
     description:
       "Custom Genesys automation platform with hybrid microservices architecture. Full-stack development with React + TypeScript, Java Spring Boot, and FastAPI.",
-    tags: ["React", "TypeScript", "Java", "FastAPI", "Keycloak"],
-    tech: "React + TypeScript, Java Spring Boot, FastAPI, Keycloak",
+    tags: ["React", "TypeScript", "Java", "FastAPI", "Python", "Keycloak"],
+    tech: "React + TypeScript, Java Spring Boot, FastAPI, Python, Keycloak",
   },
   {
     title: "CCSS Portal",
     period: "May 2025 - Present",
     description:
       "Self-service operations portal for contact-center teams. Enables business users to manage tasks without IT involvement, improving operational throughput.",
-    tags: ["React", "Node.js", "Python", "PostgreSQL"],
-    tech: "React + TypeScript, Node.js, Python, PostgreSQL, Keycloak, F5",
+    tags: ["React", "Node.js", "PostgreSQL", "Keycloak", "F5"],
+    tech: "React + TypeScript, Node.js, PostgreSQL, Keycloak, F5",
   },
   {
     title: "Zalo-Genesys Integration",
@@ -226,7 +242,7 @@ export const projects = [
     period: "Apr 2020 - May 2022",
     description:
       "Provisioned SIP proxy with OpenSIPS for enhanced QoS. Integrated custom Prometheus metrics and Grafana dashboards for proactive monitoring.",
-    tags: ["OpenSIPS", "Prometheus", "Grafana"],
+    tags: ["OpenSIPS", "Prometheus", "Grafana", "Homer"],
     tech: "Linux, OpenSIPS, PostgreSQL, Prometheus, Grafana, Homer",
   },
   {
@@ -234,7 +250,7 @@ export const projects = [
     period: "Jun 2019 - May 2022",
     description:
       "Replaced Asterisk with OpenSIPS achieving 40% better performance. Containerized SIP proxy components reducing deployment time significantly.",
-    tags: ["OpenSIPS", "Docker", "Ansible"],
+    tags: ["OpenSIPS", "Docker", "Ansible", "Homer"],
     tech: "OpenSIPS, Docker-compose, Ansible, Prometheus, Grafana",
   },
 ];
@@ -277,3 +293,20 @@ export const availability = {
   status: "Open for opportunities",
   note: "Solutions Architect track",
 };
+
+export const donations = [
+  {
+    name: "Bank QR",
+    type: "qr",
+    icon: "QrCode",
+    url: "/myQR.jpg",
+    description: "Scan QR code to donate",
+  },
+  {
+    name: "PayPal",
+    type: "paypal",
+    icon: "CreditCard",
+    url: "https://paypal.me/stmichael01",
+    description: "Donate via PayPal",
+  },
+];
