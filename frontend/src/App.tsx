@@ -18,6 +18,13 @@ export default function App() {
   const [donationOpen, setDonationOpen] = useState(false);
   const sectionsRef = useRef<{ [key: string]: HTMLElement | null }>({});
   const donationRef = useRef<HTMLDivElement | null>(null);
+  const skillEntries = Object.entries(skills);
+  const topSkillsCount = Math.min(
+    skillEntries.length,
+    Math.floor(skillEntries.length / 2) + 1
+  );
+  const topSkills = skillEntries.slice(0, topSkillsCount);
+  const bottomSkills = skillEntries.slice(topSkillsCount);
 
   // IntersectionObserver for scroll animations
   useEffect(() => {
@@ -59,6 +66,58 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const containers = Array.from(
+      document.querySelectorAll<HTMLElement>(".skill-tags, .tag-row")
+    );
+
+    const cleanup: Array<() => void> = [];
+
+    containers.forEach((el) => {
+      let isDragging = false;
+      let startX = 0;
+      let scrollLeft = 0;
+
+      const onPointerDown = (event: PointerEvent) => {
+        if (event.button !== 0) return;
+        isDragging = true;
+        startX = event.clientX;
+        scrollLeft = el.scrollLeft;
+        el.classList.add("is-dragging");
+        el.setPointerCapture(event.pointerId);
+      };
+
+      const onPointerMove = (event: PointerEvent) => {
+        if (!isDragging) return;
+        const delta = event.clientX - startX;
+        el.scrollLeft = scrollLeft - delta;
+      };
+
+      const onPointerEnd = (event: PointerEvent) => {
+        if (!isDragging) return;
+        isDragging = false;
+        el.classList.remove("is-dragging");
+        el.releasePointerCapture(event.pointerId);
+      };
+
+      el.addEventListener("pointerdown", onPointerDown);
+      el.addEventListener("pointermove", onPointerMove);
+      el.addEventListener("pointerup", onPointerEnd);
+      el.addEventListener("pointercancel", onPointerEnd);
+      el.addEventListener("pointerleave", onPointerEnd);
+
+      cleanup.push(() => {
+        el.removeEventListener("pointerdown", onPointerDown);
+        el.removeEventListener("pointermove", onPointerMove);
+        el.removeEventListener("pointerup", onPointerEnd);
+        el.removeEventListener("pointercancel", onPointerEnd);
+        el.removeEventListener("pointerleave", onPointerEnd);
+      });
+    });
+
+    return () => cleanup.forEach((fn) => fn());
+  }, []);
+
   // Scroll tracking for scroll progress indicator
   useEffect(() => {
     const handleScroll = () => {
@@ -79,9 +138,9 @@ export default function App() {
   return (
     <>
       <div className="scroll-progress" />
-      <div className="page container-xxl">
-      <header className="hero row align-items-center g-4">
-        <div className="hero-left col-12 col-lg-7 will-animate animate-fade-in-up">
+      <div className="page">
+      <header className="hero">
+        <div className="hero-left will-animate animate-fade-in-up">
           <p className="eyebrow">DevOps Engineer · {currentYear}</p>
           <h1>{personalInfo.objective}</h1>
           <p className="lede">
@@ -110,14 +169,14 @@ export default function App() {
             </a>
           </div>
         </div>
-        <div className="hero-right col-12 col-lg-5 will-animate animate-slide-in-right delay-200">
+        <div className="hero-right will-animate animate-slide-in-right delay-200">
           <div className="profile-card">
             <div className="profile-header">
               <div className="avatar">
                 <img
                   src="/profile.png"
                   alt={personalInfo.name}
-                  className="avatar-image img-fluid"
+                  className="avatar-image"
                 />
               </div>
               <div className="profile-info">
@@ -180,19 +239,18 @@ export default function App() {
       <section
         ref={(el) => (sectionsRef.current["metrics"] = el)}
         data-section-id="metrics"
-        className={`metrics row g-3 ${isInView("metrics") ? "section-in-view" : ""}`}
+        className={`metrics ${isInView("metrics") ? "section-in-view" : ""}`}
       >
         {highlights.map((item, index) => (
-          <div key={item.label} className="col-12 col-md-4">
-            <div
-              className={`metric-card will-animate animate-scale-in delay-${
-                300 + index * 100
-              }`}
-            >
-              <p className="metric-label">{item.label}</p>
-              <h3>{item.value}</h3>
-              <p className="metric-detail">{item.detail}</p>
-            </div>
+          <div
+            key={item.label}
+            className={`metric-card will-animate animate-scale-in delay-${
+              300 + index * 100
+            }`}
+          >
+            <p className="metric-label">{item.label}</p>
+            <h3>{item.value}</h3>
+            <p className="metric-detail">{item.detail}</p>
           </div>
         ))}
       </section>
@@ -200,9 +258,9 @@ export default function App() {
       <section
         ref={(el) => (sectionsRef.current["about"] = el)}
         data-section-id="about"
-        className={`split row g-4 align-items-center ${isInView("about") ? "section-in-view" : ""}`}
+        className={`split ${isInView("about") ? "section-in-view" : ""}`}
       >
-        <div className="col-12 col-lg-7">
+        <div>
           <h2>Core Expertise</h2>
           <p>
             Specialized in cloud infrastructure, Kubernetes orchestration, and
@@ -211,15 +269,13 @@ export default function App() {
             enterprise clients.
           </p>
         </div>
-        <div className="col-12 col-lg-5">
-          <div className="callout">
-            <p className="callout-title">Career Goal</p>
-            <p>
-              Progressing toward Solutions Architect responsibilities, focusing on
-              end-to-end solution design, mentoring teams, and driving technical
-              excellence.
-            </p>
-          </div>
+        <div className="callout">
+          <p className="callout-title">Career Goal</p>
+          <p>
+            Progressing toward Solutions Architect responsibilities, focusing on
+            end-to-end solution design, mentoring teams, and driving technical
+            excellence.
+          </p>
         </div>
       </section>
 
@@ -232,25 +288,23 @@ export default function App() {
           <h2>Key Projects</h2>
           <span className="eyebrow">{projects.length} deliveries</span>
         </div>
-        <div className="grid row g-4">
+        <div className="grid">
           {projects.map((project) => (
-            <div key={project.title} className="col-12 col-md-6 col-xl-4">
-              <article className="project-card">
-                <div className="project-accent" />
-                <div className="project-header">
-                  <h3>{project.title}</h3>
-                  <span className="project-period">{project.period}</span>
-                </div>
-                <p>{project.description}</p>
-                <div className="tag-row">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            </div>
+            <article key={project.title} className="project-card">
+              <div className="project-accent" />
+              <div className="project-header">
+                <h3>{project.title}</h3>
+                <span className="project-period">{project.period}</span>
+              </div>
+              <p>{project.description}</p>
+              <div className="tag-row">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -296,10 +350,10 @@ export default function App() {
           <h2>Technical Skills</h2>
           <span className="eyebrow">60+ technologies</span>
         </div>
-        <div className="skills-grid row g-3">
-          {Object.entries(skills).map(([category, techs]) => (
-            <div key={category} className="col-12 col-md-6 col-xl-4">
-              <div className="skill-category">
+        <div className="skills-grid">
+          <div className="skills-row skills-row-top">
+            {topSkills.map(([category, techs]) => (
+              <div key={category} className="skill-category">
                 <h3 className="skill-category-title">{category}</h3>
                 <div className="skill-tags">
                   {techs.map((tech) => (
@@ -309,17 +363,33 @@ export default function App() {
                   ))}
                 </div>
               </div>
+            ))}
+          </div>
+          {bottomSkills.length > 0 && (
+            <div className="skills-row skills-row-bottom">
+              {bottomSkills.map(([category, techs]) => (
+                <div key={category} className="skill-category">
+                  <h3 className="skill-category-title">{category}</h3>
+                  <div className="skill-tags">
+                    {techs.map((tech) => (
+                      <span key={tech} className="skill-tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
       </section>
 
       <section
         ref={(el) => (sectionsRef.current["contact"] = el)}
         data-section-id="contact"
-        className={`contact row align-items-center g-3 ${isInView("contact") ? "section-in-view" : ""}`}
+        className={`contact ${isInView("contact") ? "section-in-view" : ""}`}
       >
-        <div className="col-12 col-lg-8">
+        <div>
           <h2>Let&apos;s build scalable infrastructure together</h2>
           <p>
             Open to DevOps/SRE opportunities, consulting projects, and Solutions
@@ -327,17 +397,15 @@ export default function App() {
             infrastructure.
           </p>
         </div>
-        <div className="col-12 col-lg-4 d-grid d-lg-flex justify-content-lg-end">
-          <a
-            href={`mailto:${personalInfo.email}`}
-            style={{ textDecoration: "none" }}
-          >
-            <button className="primary contact-cta">
-              <Mail size={18} />
-              Contact Me
-            </button>
-          </a>
-        </div>
+        <a
+          href={`mailto:${personalInfo.email}`}
+          style={{ textDecoration: "none" }}
+        >
+          <button className="primary">
+            <Mail size={18} />
+            Contact Me
+          </button>
+        </a>
       </section>
 
       <footer className="footer">
