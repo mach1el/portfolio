@@ -118,12 +118,28 @@ aws cloudfront list-invalidations --distribution-id <distribution_id> \
   --output table
 ```
 
+### Cache policy notes (S3 503 mitigation)
+- HTML is cached short-term; static assets (e.g., `/assets/*`) are cached long-term.
+- Prefer invalidating only `/index.html` after deploys (avoid `/*` unless necessary).
+- This reduces origin load and helps prevent S3 `SlowDown` (503) spikes.
+
+### Terraform state (centralized S3)
+- State is stored in a shared bucket, with a unique key per project.
+- This repo uses `portfolio/terraform.tfstate` to avoid collisions.
+- Reusing the same bucket is safe **as long as keys/prefixes are unique**.
+
 ---
 
 ## 📚 Docs
 - `docs/Route53_Domain_Setup.md`
 - `docs/terraform-iam-user-setup.md`
 - `infra/README.md`
+- `CHANGELOG.md`
+
+---
+
+## 📝 Changelog
+- **2026-02-01** — Bootstrap grid responsiveness, donation widget click-toggle + mobile sizing, CloudFront cache policies, centralized state key.
 
 ---
 
