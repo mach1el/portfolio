@@ -4,8 +4,6 @@
 *.tfstate.*
 *.tfvars
 *.tfvars.json
-.terraform.lock.hcl
-backend.hcl
 crash.log
 crash.*.log
 override.tf
@@ -15,6 +13,9 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# Terraform local plans
+*.tfplan
+
 # Editors / OS
 .DS_Store
 Thumbs.db
@@ -22,8 +23,18 @@ Thumbs.db
 .vscode/
 *.swp
 
-# Frontend
+# Frontend / Node
 node_modules/
 dist/
+.vite/
+.eslintcache
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
 .env
-.env.local
+.env.*
+!.env.example
