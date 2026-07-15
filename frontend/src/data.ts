@@ -212,6 +212,7 @@ export const projects = [
       "Custom Genesys automation platform with hybrid microservices architecture. Full-stack development with React + TypeScript, Java Spring Boot, and FastAPI.",
     tags: ["React", "TypeScript", "Java", "FastAPI", "Python", "Keycloak"],
     tech: "React + TypeScript, Java Spring Boot, FastAPI, Python, Keycloak",
+    images: [], // Add screenshots when available
   },
   {
     title: "CCSS Portal",
@@ -220,6 +221,7 @@ export const projects = [
       "Self-service operations portal for contact-center teams. Enables business users to manage tasks without IT involvement, improving operational throughput.",
     tags: ["React", "Node.js", "PostgreSQL", "Keycloak", "F5"],
     tech: "React + TypeScript, Node.js, PostgreSQL, Keycloak, F5",
+    images: ["/hcvn_ccss.png", "/CCSS_diagram.png"],
   },
   {
     title: "Zalo-Genesys Integration",
@@ -228,14 +230,16 @@ export const projects = [
       "Middleware solution bridging Zalo platform and Genesys contact center. Containerized eService deployment ensuring scalable chat workflow.",
     tags: ["Node.js", "Docker", "Genesys", "Redis"],
     tech: "Docker, Genesys Components, Node.js, Redis",
+    images: ["/ZaloChatWF.png"],
   },
   {
     title: "Kubernetes Migration",
     period: "Jul 2023 - Oct 2024",
     description:
-      "Migrated traditional services to EKS with full GitOps implementation. Automated provisioning with Terraform/Ansible and implemented comprehensive observability.",
-    tags: ["AWS", "Kubernetes", "Terraform", "GitLab CI"],
-    tech: "AWS EKS, Terraform, Ansible, Helm, Argo CD, Prometheus, Grafana",
+      "Migrated traditional services to EKS with full GitOps implementation. Managed clusters via Rancher for unified visibility. Automated provisioning with Terraform/Ansible and implemented comprehensive observability.",
+    tags: ["AWS", "Kubernetes", "Terraform", "GitLab CI", "Rancher"],
+    tech: "AWS EKS, Rancher, Terraform, Ansible, Helm, Argo CD, Prometheus, Grafana",
+    images: ["/migrateEKS.png"],
   },
   {
     title: "VPBank Call Center",
@@ -244,6 +248,7 @@ export const projects = [
       "Provisioned SIP proxy with OpenSIPS for enhanced QoS. Integrated custom Prometheus metrics and Grafana dashboards for proactive monitoring.",
     tags: ["OpenSIPS", "Prometheus", "Grafana", "Homer"],
     tech: "Linux, OpenSIPS, PostgreSQL, Prometheus, Grafana, Homer",
+    images: [], // Add screenshots when available
   },
   {
     title: "FE Credit Call Center",
@@ -252,6 +257,7 @@ export const projects = [
       "Replaced Asterisk with OpenSIPS achieving 40% better performance. Containerized SIP proxy components reducing deployment time significantly.",
     tags: ["OpenSIPS", "Docker", "Ansible", "Homer"],
     tech: "OpenSIPS, Docker-compose, Ansible, Prometheus, Grafana",
+    images: ["/opensips_architecture.drawio.png"],
   },
 ];
 
