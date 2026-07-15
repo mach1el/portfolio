@@ -23,12 +23,13 @@ export const currentYear = new Date().getFullYear();
 
 export const personalInfo = {
   name: "Đặng Bảo Phong",
-  role: "DevOps Engineer",
+  role: "Cloud Architect & Automation Expert",
   location: "Bien Hoa, Dong Nai",
   email: "michaeldang.general@gmail.com",
   phone: "+84937375404",
+  resumeUrl: "/resume.pdf",
   objective:
-    "DevOps Engineer with strong coding, automation, and systems skills, looking to design and operate scalable, secure infrastructure while mentoring teams—progressing toward Solutions Architect responsibilities in end-to-end solution design.",
+    "Visionary Cloud Architect and Automation Expert dedicated to designing highly resilient, scalable systems and eliminating operational toil. Passionate about orchestrating zero-touch automation pipelines, driving enterprise-level architectural transformations, and building secure, future-proof infrastructures.",
 };
 
 export const socialLinks = [
@@ -52,23 +53,28 @@ export const socialLinks = [
     url: "mailto:michaeldang.general@gmail.com",
     icon: "Mail",
   },
+  {
+    name: "Telegram",
+    url: "https://t.me/st_mich43l",
+    icon: "Send",
+  },
 ];
 
 export const highlights = [
   {
     label: "Years Experience",
     value: calculateYearsOfExperience(),
-    detail: "DevOps & Infrastructure",
+    detail: "Architecture & Automation",
   },
   {
     label: "Key Projects",
     value: "8+",
-    detail: "Production deployments",
+    detail: "Enterprise Architectures",
   },
   {
-    label: "Focus",
-    value: "Cloud + K8s",
-    detail: "AWS & Kubernetes expert",
+    label: "Core Focus",
+    value: "Zero-Touch",
+    detail: "Infrastructure as Code",
   },
 ];
 
@@ -169,11 +175,13 @@ export const experience = [
     time: "Oct 2024 — Present",
     location: "Vietnam",
     summary:
-      "Engineered middleware solutions integrating Genesys with Zalo OA. Implemented GitOps workflows and built CCSS self-service portal with React + TypeScript and Python microservices.",
+      "Drove GitOps methodologies and engineered scalable self-service, omnichannel middleware, and telephony automation solutions.",
     highlights: [
-      "Built CallCraft automation service using Genesys SDK platform",
-      "Designed CCSS portal enabling business users to manage tasks without IT",
-      "Optimized containerization of Genesys components for scalability",
+      "Architected CCSS self-service portal (React/TypeScript/Python), empowering business teams to manage operations independently",
+      "Boosted operational throughput by 70% and reduced IT support tickets by 90% via self-service automation",
+      "Developed CallCraft GitOps automation engine for Genesys, cutting testing and deployment cycles by 65%",
+      "Established comprehensive GitLab CI/CD pipelines to treat complex telephony environments as code",
+      "Engineered omnichannel middleware integrating Genesys Chat with Zalo OA, unlocking a seamless digital customer service pipeline",
     ],
   },
   {
@@ -182,11 +190,14 @@ export const experience = [
     time: "May 2022 — Oct 2024",
     location: "Vietnam",
     summary:
-      "Orchestrated microservices on Amazon EKS achieving 99.95% availability. Automated infrastructure with Terraform/Ansible reducing deployment time by 70%.",
+      "Orchestrated highly available AWS EKS microservices environments and instituted GitOps and zero-downtime CI/CD practices.",
     highlights: [
-      "Improved node/pod utilization +20%, reduced CPU -25%, memory -17%",
-      "Cut EKS scale-up time from 30min → 7min (-76%)",
-      "Centralized logging for 100+ workloads with Fluent Bit + Loki",
+      "Architected secure AWS infrastructure (EKS, VPC, ECR) with Terraform and Ansible, reducing manual setup time by 75%",
+      "Implemented zero-downtime GitOps continuous delivery via ArgoCD, Rancher Fleet, and GitLab CI/CD across 100+ microservices",
+      "Optimized Kubernetes workloads, improving resource utilization by 20% and reducing overall CPU/memory consumption by up to 25%",
+      "Streamlined EKS cluster autoscaling, slashing scale-up time from 30 minutes to 7 minutes (a 76% reduction)",
+      "Built a centralized observability stack (PGAK, Fluent Bit, Loki), accelerating root-cause analysis (RCA) by 90%",
+      "Optimized edge routing and security using Cloudflare Workers and custom Page Rules",
     ],
   },
   {
@@ -195,11 +206,14 @@ export const experience = [
     time: "Dec 2018 — Jan 2023",
     location: "Vietnam",
     summary:
-      "Replaced Asterisk with OpenSIPS-based SIP proxy optimizing performance. Led call center infrastructure for major clients including VPBank and FEcredit.",
+      "Modernized enterprise telephony infrastructure, migrating to high-performance OpenSIPS platforms while ensuring 99.99% SLA for major financial clients.",
     highlights: [
-      "Reduced dev env spin-up from 1 hour → 5 min (-91%)",
-      "Server provisioning from 40 min → 8 min (-80%)",
-      "Zero config drift with Ansible automation",
+      "Headed the migration from Asterisk to high-performance OpenSIPS proxy engine, seamlessly handling 2,000+ concurrent calls/CPS",
+      "Managed mission-critical infrastructure for enterprise clients (VPBank, FE Credit, Sacombank), ensuring 99.99% system availability",
+      "Automated bare-metal and server provisioning using Ansible, eliminating configuration drift and cutting setup time by 50%",
+      "Dockerized OpenSIPS and microservices, orchestrating deployments across Docker Swarm via dynamic Jenkins CI/CD pipelines",
+      "Architected end-to-end observability stack using Prometheus, Grafana, and Homer SIP Capture for real-time signaling analysis",
+      "Engineered custom Python/Flask RESTful APIs and Selenium test suites to automate complex background workflows and data extraction",
     ],
   },
 ];

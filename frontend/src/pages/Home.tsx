@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Download, Linkedin, Github, Mail, Shield, Heart, QrCode, CreditCard } from "lucide-react";
+import { Download, Linkedin, Github, Mail, Shield, Heart, QrCode, CreditCard, Send } from "lucide-react";
 import {
   personalInfo,
   socialLinks,
@@ -19,12 +19,6 @@ export default function Home() {
   const sectionsRef = useRef<{ [key: string]: HTMLElement | null }>({});
   const donationRef = useRef<HTMLDivElement | null>(null);
   const skillEntries = Object.entries(skills);
-  const topSkillsCount = Math.min(
-    skillEntries.length,
-    Math.floor(skillEntries.length / 2) + 1
-  );
-  const topSkills = skillEntries.slice(0, topSkillsCount);
-  const bottomSkills = skillEntries.slice(topSkillsCount);
 
   // IntersectionObserver for scroll animations
   useEffect(() => {
@@ -142,13 +136,14 @@ export default function Home() {
           <p className="eyebrow">DevOps Engineer · {currentYear}</p>
           <h1>{personalInfo.objective}</h1>
           <p className="lede">
-            Specializing in Kubernetes, AWS, CI/CD automation, and infrastructure
-            as code. Building scalable, secure systems that drive business value.
+            Specializing in designing resilient cloud architectures and implementing
+            end-to-end infrastructure automation. Building scalable, secure systems
+            that eliminate operational toil and drive business value.
           </p>
           <div className="hero-actions">
             <a
-              href="/home/mich43l/Documents/DANG-BAO-PHONG-TopCV.vn-010226.150753.pdf"
-              download
+              href={personalInfo.resumeUrl}
+              download="Dang_Bao_Phong_Resume.pdf"
               style={{ textDecoration: "none" }}
             >
               <button className="primary">
@@ -211,6 +206,8 @@ export default function Home() {
                         ? Github
                         : link.icon === "Shield"
                         ? Shield
+                        : link.icon === "Send"
+                        ? Send
                         : Mail;
                     return (
                       <a
@@ -261,18 +258,18 @@ export default function Home() {
         <div>
           <h2>Core Expertise</h2>
           <p>
-            Specialized in cloud infrastructure, Kubernetes orchestration, and
-            CI/CD automation. Proven track record of improving system performance,
-            reducing deployment times, and building scalable solutions for
-            enterprise clients.
+            Specialized in designing resilient cloud architectures and implementing
+            end-to-end infrastructure automation. Proven track record of architecting
+            scalable enterprise systems, orchestrating zero-touch deployments, and
+            transforming manual operations into robust, automated workflows.
           </p>
         </div>
         <div className="callout">
           <p className="callout-title">Career Goal</p>
           <p>
-            Progressing toward Solutions Architect responsibilities, focusing on
-            end-to-end solution design, mentoring teams, and driving technical
-            excellence.
+            Advancing as a Principal Solutions Architect, focusing on enterprise-scale
+            architectural strategy, driving automation-first cultures, and delivering
+            high-impact technical excellence.
           </p>
         </div>
       </section>
@@ -349,36 +346,18 @@ export default function Home() {
           <span className="eyebrow">60+ technologies</span>
         </div>
         <div className="skills-grid">
-          <div className="skills-row skills-row-top">
-            {topSkills.map(([category, techs]) => (
-              <div key={category} className="skill-category">
-                <h3 className="skill-category-title">{category}</h3>
-                <div className="skill-tags">
-                  {techs.map((tech) => (
-                    <span key={tech} className="skill-tag">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+          {skillEntries.map(([category, techs]) => (
+            <div key={category} className="skill-category">
+              <h3 className="skill-category-title">{category}</h3>
+              <div className="skill-tags">
+                {techs.map((tech) => (
+                  <span key={tech} className="skill-tag">
+                    {tech}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
-          {bottomSkills.length > 0 && (
-            <div className="skills-row skills-row-bottom">
-              {bottomSkills.map(([category, techs]) => (
-                <div key={category} className="skill-category">
-                  <h3 className="skill-category-title">{category}</h3>
-                  <div className="skill-tags">
-                    {techs.map((tech) => (
-                      <span key={tech} className="skill-tag">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
             </div>
-          )}
+          ))}
         </div>
       </section>
 

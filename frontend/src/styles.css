@@ -2,7 +2,7 @@
 
 :root {
   color-scheme: light;
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   --bg: #0f1115;
@@ -240,7 +240,7 @@ body {
 }
 
 .expertise-label {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-size: 11px;
@@ -259,7 +259,7 @@ body {
 
 
 .eyebrow {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 12px;
@@ -424,7 +424,7 @@ button:active {
 }
 
 .profile-body span {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   font-size: 11px;
   color: var(--accent-2);
@@ -529,7 +529,7 @@ button:active {
 .metric-label {
   color: var(--muted);
   font-size: 13px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -565,7 +565,7 @@ button:active {
 }
 
 .callout-title {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.2em;
@@ -598,7 +598,7 @@ button:active {
   padding: 8px 16px;
   border-radius: 999px;
   font-size: 13px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -686,7 +686,7 @@ button:active {
 
 .project-period {
   font-size: 11px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   color: var(--muted);
   white-space: nowrap;
   text-transform: uppercase;
@@ -748,7 +748,7 @@ button:active {
 
 .tag {
   font-size: 11px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   color: #e1d7ff;
   border: 1px solid rgba(168, 85, 247, 0.35);
   background: rgba(255, 255, 255, 0.06);
@@ -798,7 +798,7 @@ button:active {
 
 .timeline-time {
   font-size: 12px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   white-space: nowrap;
 }
 
@@ -879,7 +879,7 @@ button:active {
 .footer-links {
   display: flex;
   gap: 16px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.12em;
@@ -1005,7 +1005,7 @@ button:active {
   padding: 12px 16px;
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.95), rgba(192, 132, 252, 0.9));
   border-radius: 16px 16px 0 0;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -1098,7 +1098,7 @@ button:active {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -1805,50 +1805,10 @@ section.section-in-view {
 
 .skills-grid {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.skills-row {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 12px;
-  justify-content: flex-start;
-  overflow-x: auto;
-  padding: 6px 32px 2px;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  scrollbar-color: rgba(168, 85, 247, 0.35) transparent;
-  position: relative;
-}
-
-.skills-row-top {
-  justify-content: flex-start;
-}
-
-.skills-row-bottom {
+  flex-wrap: wrap;
+  gap: 16px;
   justify-content: center;
-}
-
-.skills-row::-webkit-scrollbar {
-  height: 0;
-}
-
-.skills-row::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.skills-row::-webkit-scrollbar-thumb {
-  background: rgba(168, 85, 247, 0.35);
-  border-radius: 999px;
-}
-
-.skills-row:hover {
-  scrollbar-width: none;
-}
-
-.skills-row:hover::-webkit-scrollbar {
-  height: 0;
+  padding: 6px 0;
 }
 
 .skill-category {
@@ -1869,67 +1829,8 @@ section.section-in-view {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  min-height: 88px;
-  flex: 0 0 clamp(220px, 18vw, 300px);
-  scroll-snap-align: start;
-}
-
-/* Cloud-like stagger */
-.skills-row-top .skill-category:nth-child(3n + 1) {
-  margin-top: 6px;
-}
-
-.skills-row-top .skill-category:nth-child(3n) {
-  margin-top: -6px;
-}
-
-.skills-row-bottom .skill-category:nth-child(3n + 2) {
-  margin-top: 6px;
-}
-
-.skills-row-bottom .skill-category:nth-child(3n) {
-  margin-top: -6px;
-}
-
-.skills-row::before,
-.skills-row::after {
-  content: "";
-  position: sticky;
-  top: 0;
-  align-self: stretch;
-  width: 28px;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.skills-row::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(11, 12, 17, 0.9), transparent);
-}
-
-.skills-row::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(11, 12, 17, 0.9), transparent);
-}
-
-.skills-row .skill-category {
-  animation: cloudDrift 12s ease-in-out infinite;
-  will-change: transform;
-}
-
-.skills-row .skill-category:nth-child(3n) {
-  animation-duration: 14s;
-  animation-delay: -4s;
-}
-
-.skills-row .skill-category:nth-child(3n + 1) {
-  animation-duration: 11s;
-  animation-delay: -2s;
-}
-
-.skills-row .skill-category:nth-child(3n + 2) {
-  animation-duration: 13s;
-  animation-delay: -6s;
+  flex: 1 1 250px;
+  max-width: 350px;
 }
 
 .skill-category::after {
@@ -1953,7 +1854,7 @@ section.section-in-view {
 
 .skill-category-title {
   font-size: 11px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--accent-2);
@@ -1965,41 +1866,15 @@ section.section-in-view {
 
 .skill-tags {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 5px;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
   width: 100%;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
-  scrollbar-color: rgba(168, 85, 247, 0.5) transparent;
-  cursor: grab;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: pan-x;
 }
-
-.skill-tags::-webkit-scrollbar {
-  height: 0;
-}
-
-.skill-tags::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.skill-tags::-webkit-scrollbar-thumb {
-  background: rgba(168, 85, 247, 0.35);
-  border-radius: 999px;
-}
-
-.skill-tags.is-dragging {
-  cursor: grabbing;
-}
-
 
 .skill-tag {
   font-size: 10.5px;
-  padding: 3px 8px;
+  padding: 4px 10px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
@@ -2322,7 +2197,7 @@ section.section-in-view {
 .footer-home-link {
   color: var(--muted);
   text-decoration: none;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.12em;
